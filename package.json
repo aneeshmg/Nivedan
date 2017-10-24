@@ -1,0 +1,26 @@
+{
+  "name": "nivedan",
+  "version": "1.0.0",
+  "description": "A simple promise/callback based http request client for NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "request",
+    "promise",
+    "callback",
+    "nivedan"
+  ],
+  "author": "Aneesh MG",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aneeshmg/Nivedan.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aneeshmg/Nivedan/issues"
+  },
+  "homepage": "https://github.com/aneeshmg/Nivedan#readme"
+}
