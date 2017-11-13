@@ -4,7 +4,7 @@
   "description": "A simple promise/callback based http request client for NodeJS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha tests/**/*.spec.js"
   },
   "keywords": [
     "http",
@@ -28,9 +28,7 @@
     "codecov": "^3.0.0",
     "mocha": "^4.0.1",
     "nyc": "^11.2.1",
-    "sinon": "^4.0.1"
-  },
-  "dependencies": {
+    "sinon": "^4.0.1",
     "nock": "^9.1.0"
   }
 }

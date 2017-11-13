@@ -14,8 +14,8 @@ const url = "http://localhost:8000"
 
 describe("test get requests", () => {
 
-    it.only("should respond with callback successfully", done => {
-        
+    it("should respond with callback successfully", done => {
+
         nock(url).get("/_status").reply(SUCCESS_CODE, function () {
             return sampleJSONResponse
         })

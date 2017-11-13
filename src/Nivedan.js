@@ -1,5 +1,5 @@
 'use strict';
-const https = require("http")
+const https = require("https")
 const url = require('url')
 
 const sampleData = '{ "stuff": "is", "awesome": "in here" }'
