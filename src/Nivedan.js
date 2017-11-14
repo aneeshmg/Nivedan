@@ -1,6 +1,6 @@
 'use strict';
 const https = require("https")
-const url = require('url')
+const { URL } = require('url');
 
 const sampleData = '{ "stuff": "is", "awesome": "in here" }'
 
@@ -9,27 +9,37 @@ function Nivedan(logger) {
 }
 Nivedan.prototype.get = function (url, headers, payload, callback) {
 
+    url = new URL(url)
+
     const options = {
-        hostname: 'localhost',
-        port: 8000,
-        path: '/_status',
+        hostname: url.hostname,
+        port: url.port,
+        path: url.pathname,
         method: 'GET'
     }
 
     return new Promise((resolve, reject) => {
         let data = ""
+        const startTime = new Date()
         const req = https.request(options, res => {
             res.setEncoding('utf8');
 
-            res.on('data', (chunk) => {
+            res.on('data', chunk => {
                 data += chunk
-            });
+            })
             res.on('end', () => {
+                const endTime = new Date()
+                let response = {
+                    body: data,
+                    timetaken: `${endTime - startTime}ms`,
+                    statusCode: res.statusCode
+                }
                 if (callback) callback(null, data)
+                console.log(response)
                 resolve(data)
-            });
+            })
 
-        });
+        })
 
         req.on('error', e => {
             if (callback) callback(e)
@@ -42,13 +52,5 @@ Nivedan.prototype.get = function (url, headers, payload, callback) {
 
 
 }
-
-let mazaak = "https://mazaak.herokuapp.com/v1/small"
-let a = "https://google.com/search?q=something%20else"
-
-// const { URL } = require('url');
-// const myURL = new URL(a);
-// console.log(myURL);
-
 
 module.exports = logger => new Nivedan(logger)
