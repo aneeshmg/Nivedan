@@ -19,13 +19,14 @@ describe("'GET' request tests", () => {
         nock(baseUrl).get("/_status").reply(SUCCESS_CODE, function () {
             return sampleJSONResponse
         })
-        let callback = (err, data) => {
+        let callback = (err, response) => {
             expect(callbackSpy.called).to.be.true
             expect(callbackSpy.calledOnce).to.be.true
-            expect(callbackSpy.calledWith(null, sampleJSONResponse)).to.be.true
-            expect(data).to.not.be.null
+            expect(response).to.not.be.null
+            expect(response).to.haveOwnProperty("body").to.equal(sampleJSONResponse)
+            expect(response).to.haveOwnProperty("timetaken").to.include("ms")
+            expect(response).to.haveOwnProperty("statusCode").to.equal(SUCCESS_CODE)
             expect(err).to.be.null
-            expect(data).to.be.equal(sampleJSONResponse)
             done()
         }
 
@@ -35,7 +36,7 @@ describe("'GET' request tests", () => {
 
     })
 
-    it("should respond with promise successfully", done => {
+    it.only("should respond with promise successfully", done => {
 
         nock(baseUrl).get("/_status").reply(SUCCESS_CODE, function () {
             return sampleJSONResponse
@@ -43,7 +44,9 @@ describe("'GET' request tests", () => {
           
         nivedan.get(`${baseUrl}/_status`, {}, {}).then(response => {
             expect(response).to.not.be.null
-            expect(response).to.be.equal(sampleJSONResponse)
+            expect(response).to.haveOwnProperty("body").to.equal(sampleJSONResponse)
+            expect(response).to.haveOwnProperty("timetaken").to.include("ms")
+            expect(response).to.haveOwnProperty("statusCode").to.equal(SUCCESS_CODE)
             done()
         }).catch(err => {
             expect(err).to.be.null

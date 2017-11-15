@@ -34,9 +34,8 @@ Nivedan.prototype.get = function (url, headers, payload, callback) {
                     timetaken: `${endTime - startTime}ms`,
                     statusCode: res.statusCode
                 }
-                if (callback) callback(null, data)
-                console.log(response)
-                resolve(data)
+                if (callback) callback(null, response)
+                resolve(response)
             })
 
         })
