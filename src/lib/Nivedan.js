@@ -1,6 +1,7 @@
 'use strict';
 const https = require("https")
-const { URL } = require('url');
+const { URL } = require('url')
+const responseModel = require("./Models")
 
 const sampleData = '{ "stuff": "is", "awesome": "in here" }'
 
@@ -29,11 +30,11 @@ Nivedan.prototype.get = function (url, headers, payload, callback) {
             })
             res.on('end', () => {
                 const endTime = new Date()
-                let response = {
-                    body: data,
-                    timetaken: `${endTime - startTime}ms`,
-                    statusCode: res.statusCode
-                }
+                let response = new responseModel(
+                    data, 
+                    res.statusCode, 
+                    `${endTime - startTime}ms`
+                )
                 if (callback) callback(null, response)
                 resolve(response)
             })

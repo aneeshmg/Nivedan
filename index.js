@@ -1,1 +1,1 @@
-module.exports = require("./src/Nivedan")
+module.exports = require("./src/lib/Nivedan")

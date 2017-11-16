@@ -36,7 +36,7 @@ describe("'GET' request tests", () => {
 
     })
 
-    it.only("should respond with promise successfully", done => {
+    it("should respond with promise successfully", done => {
 
         nock(baseUrl).get("/_status").reply(SUCCESS_CODE, function () {
             return sampleJSONResponse
@@ -62,5 +62,6 @@ describe("'POST' request tests", () => {
         })
 
         // TODO: you know what todo
+        done()
     })
 })
