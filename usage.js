@@ -1,5 +1,5 @@
 const nivedan = require("./")({})
 
-nivedan.get("http://aneeshmg.github.io/Javascript/AirTennisGame/", {}, {}).then(res => {
+nivedan.get("https://mazaak.herokuapp.com/v1/small", {}, {}).then(res => {
     console.log(res)
 })

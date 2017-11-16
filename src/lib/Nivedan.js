@@ -33,7 +33,9 @@ Nivedan.prototype.get = function (url, headers, payload, callback) {
                 let response = new responseModel(
                     data, 
                     res.statusCode, 
-                    `${endTime - startTime}ms`
+                    `${endTime - startTime}ms`,
+                    res.headers,
+                    res.statusMessage
                 )
                 if (callback) callback(null, response)
                 resolve(response)
